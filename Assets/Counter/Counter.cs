@@ -2,22 +2,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Counter : MonoBehaviour
 {
-    public Text CounterText;
+    [SerializeField]
+    private int scoreToAdd = 2;
 
-    private int Count = 0;
+    private GameManager gameManager;
 
     private void Start()
     {
-        Count = 0;
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Count += 1;
-        CounterText.text = "Count : " + Count;
+        gameManager.UpdateScore(scoreToAdd);
     }
 }
